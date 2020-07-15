@@ -21,4 +21,6 @@ public interface StuMapper {
     Stu queryStuByID(int ID);
 
     int updateStu(Stu stu);
+
+    int deleteStu(int ID);
 }
