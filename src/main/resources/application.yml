@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    username: xinsu
+    password: xinsu248
+    url: jdbc:mysql://47.100.97.246:3306/xinsu?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #Spring Boot 默认不是注入这些属性值，需要自己绑定
+    #druid 数据源专业配置
+    initialSize: 10
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #配置监控统计拦截的filters,stat:监控统计、log4j
+    #如果允许时报错 java.lang.ClassNotFountException
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true

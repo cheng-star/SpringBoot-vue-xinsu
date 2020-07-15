@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinsu.mapper.StuMapper">
+    <insert id="addStu" parameterType="Stu">
+        insert into xinsu.stu (ID,name,clazz,mail,balance)
+        value (#{ID}, #{`name`}, #{clazz},#{mail},#{balance});
+    </insert>
+
+    <update id="updateStu" parameterType="Stu">
+        update xinsu.stu set balance=#{balance}
+        where ID=#{ID};
+    </update>
+
+    <select id="queryStuByID" resultType="Stu">
+        select * from xinsu.stu
+        where ID = #{ID}
+    </select>
+
+    <select id="queryStuList" resultType="Stu">
+        select * from xinsu.stu
+    </select>
+
+</mapper>

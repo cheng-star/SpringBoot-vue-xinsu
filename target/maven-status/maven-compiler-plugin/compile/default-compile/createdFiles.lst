@@ -1,0 +1,10 @@
+com\xinsu\pojo\Record.class
+com\xinsu\service\OPeratersServiceImpl.class
+com\xinsu\mapper\OperatersMapper.class
+com\xinsu\mapper\StuMapper.class
+com\xinsu\pojo\Stu.class
+com\xinsu\pojo\Operaters.class
+com\xinsu\controller\OperatersController.class
+com\xinsu\TeamApplication.class
+com\xinsu\service\OperatersService.class
+com\xinsu\mapper\RecordMapper.class
