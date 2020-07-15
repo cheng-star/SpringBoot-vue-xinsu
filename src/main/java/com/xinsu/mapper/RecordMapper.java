@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public interface RecordMapper {
 
-    List<Record> queryRecordByID(int ID);
+    List<Record> queryRecordByID(int serial);
     int addRecord(Record record);
+    int deleteRecords(int serial);
 }
