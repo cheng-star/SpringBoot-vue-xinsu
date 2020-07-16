@@ -17,8 +17,9 @@ public class OPeratersServiceImpl implements OperatersService{
     @Autowired
     OperatersMapper operatersMapper;
 
+
     @Override
-    public List<Operaters> queryOperatersList() {
-        return operatersMapper.queryOperatersList();
+    public Operaters queryOperatersByName(String name) {
+        return operatersMapper.queryOperatersByName(name);
     }
 }

@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface OperatersService {
 
-    List<Operaters> queryOperatersList();
+    Operaters queryOperatersByName(String name);
 }

@@ -4,8 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xinsu.mapper.OperatersMapper">
 
-    <select id="queryOperatersList" resultType="Operaters">
+    <select id="queryOperatersByName" resultType="Operaters" parameterType="int">
         select * from xinsu.operaters
+        where name = #{`name`}
     </select>
 
 </mapper>
