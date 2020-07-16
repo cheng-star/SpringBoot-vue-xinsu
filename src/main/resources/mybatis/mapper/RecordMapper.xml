@@ -4,13 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xinsu.mapper.RecordMapper">
     <insert id="addRecord" parameterType="Record">
-        insert into xinsu.record (ID,detail,timestamp)
-        value (#{ID}, #{detail}, #{`timestamp`});
+        insert into xinsu.record (detail,timestamp,ID)
+        value (#{detail}, #{`timestamp`},#{ID});
     </insert>
 
-    <select id="queryRecordByID" resultType="Stu">
+    <select id="queryRecordByID" resultType="Record">
         select * from xinsu.record
         where ID = #{ID}
     </select>
+    <delete id="deleteRecords" parameterType="int">
+        delete from xinsu.record
+        where ID = #{ID}
+    </delete>
 
 </mapper>

@@ -22,4 +22,9 @@
         select * from xinsu.stu
     </select>
 
+    <delete id="deleteStu" parameterType="int">
+        delete from xinsu.stu
+        where ID = #{ID}
+    </delete>
+
 </mapper>
