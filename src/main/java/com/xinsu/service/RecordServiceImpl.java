@@ -16,8 +16,8 @@ public class RecordServiceImpl implements RecordService{
     RecordMapper recordMapper;
 
     @Override
-    public int deleteRecords(int serial) {
-        return recordMapper.deleteRecords(serial);
+    public int deleteRecords(int ID) {
+        return recordMapper.deleteRecords(ID);
     }
 
     @Override

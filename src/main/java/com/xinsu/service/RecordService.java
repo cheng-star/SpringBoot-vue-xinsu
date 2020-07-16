@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RecordService {
 
-    int deleteRecords(int serial);
+    int deleteRecords(int ID);
     int addRecord(Record record);
 }
