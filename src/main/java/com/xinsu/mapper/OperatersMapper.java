@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface OperatersMapper {
 
-    List<Operaters> queryOperatersList();
+    Operaters queryOperatersByName(String name);
 }
