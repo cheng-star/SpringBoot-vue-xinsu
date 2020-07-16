@@ -1,12 +1,19 @@
 package com.xinsu.pojo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author yeyike
  * @date 2020/7/15 - 20:03
  */
+@Data
+@NoArgsConstructor
 public class Result {
+    Object object;
     String key;
     String[] usage;
+
 
     public Result(String key) {
         this.key = key;
@@ -17,20 +24,9 @@ public class Result {
         this.usage = value;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
+    public Result(Object object, String key) {
+        this.object = object;
         this.key = key;
-    }
-
-    public String[] getUsage() {
-        return usage;
-    }
-
-    public void setUsage(String[] usage) {
-        this.usage = usage;
     }
 }
 
