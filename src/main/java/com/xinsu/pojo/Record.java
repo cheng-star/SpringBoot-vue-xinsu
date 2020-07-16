@@ -17,9 +17,9 @@ public class Record {
     private Date timestamp;
     private int serial;
 
-    public Record(String detail,int serial){
+    public Record(String detail,int ID){
         this.detail = detail;
-        this.serial = serial;
+        this.ID = ID;
         timestamp = new Date();
     }
 }
