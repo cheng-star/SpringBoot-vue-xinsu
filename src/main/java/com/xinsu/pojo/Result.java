@@ -12,16 +12,16 @@ import lombok.NoArgsConstructor;
 public class Result {
     Object object;
     String key;
-    String[] usage;
+    String message;
 
 
     public Result(String key) {
         this.key = key;
     }
 
-    public Result(String key,String[] value) {
+    public Result(String key,String message) {
         this.key = key;
-        this.usage = value;
+        this.message = message;
     }
 
     public Result(Object object, String key) {
