@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author yeyike
  * @date 2020/7/15 - 19:52
  */
 @RestController
-@CrossOrigin
 public class StuController {
     @Autowired
     StuServiceImpl stuService;
@@ -27,7 +28,34 @@ public class StuController {
     @Autowired
     JavaMailSenderImpl mailSender;
 
-    @RequestMapping("/consumption")
+    SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+    @RequestMapping("view/getStus")
+    public List<Stu> getStus(){
+        return stuService.queryStuList();
+    }
+
+    @RequestMapping("view/queryStuByID")
+    public Stu queryStuByID(int ID){
+        Stu stu = stuService.queryStuByID(ID);
+        return stu;
+    }
+    @RequestMapping("view/addStu")
+    public Result addStu(Stu stu){
+        int result = stuService.addStu(stu);
+        if (result > 0){
+            mailMessage.setSubject("新素会员卡新用户通知");
+            mailMessage.setText("今天您已成功购买新素会员卡");
+            mailMessage.setTo(stu.getMail());
+            mailMessage.setFrom("ad2248@foxmail.com");
+            mailSender.send(mailMessage);
+            return new Result("true");
+        }else {
+            return new Result("false");
+        }
+    }
+
+    @RequestMapping("view/consumption")
     public Result consumption(Stu stu){
         Stu stu1 = stuService.queryStuByID(stu.getID());
         int price = stu1.getBalance() - stu.getBalance();
@@ -36,8 +64,6 @@ public class StuController {
             Record record = new Record("消费了"+price+"元",stu.getID());
             int result2 = recordService.addRecord(record);
             if (result2 > 0){
-                SimpleMailMessage mailMessage = new SimpleMailMessage();
-
                 mailMessage.setSubject("新素会员卡消费通知");
                 mailMessage.setText("今天您已消费"+price+"元");
                 mailMessage.setTo(stu.getMail());
@@ -54,7 +80,7 @@ public class StuController {
 
     }
 
-    @RequestMapping("/recharge")
+    @RequestMapping("view/recharge")
     public Result recharge(Stu stu){
         Stu stu1 = stuService.queryStuByID(stu.getID());
         int price = stu.getBalance() - stu1.getBalance();
@@ -63,8 +89,6 @@ public class StuController {
             Record record = new Record("充值了"+String.valueOf(price)+"元",stu.getID());
             int result2 = recordService.addRecord(record);
             if (result2 > 0){
-                SimpleMailMessage mailMessage = new SimpleMailMessage();
-
                 mailMessage.setSubject("新素会员卡消费通知");
                 mailMessage.setText("今天您已充值"+price+"元");
                 mailMessage.setTo(stu.getMail());
@@ -81,7 +105,7 @@ public class StuController {
 
     }
 
-    @RequestMapping("/deleteStu")
+    @RequestMapping("view/deleteStu")
     public Result deleteStu(int ID){
         Stu stu = stuService.queryStuByID(ID);
         int result1 = stuService.deleteStu(ID);
