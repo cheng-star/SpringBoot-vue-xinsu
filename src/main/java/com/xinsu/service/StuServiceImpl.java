@@ -5,6 +5,8 @@ import com.xinsu.pojo.Stu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author yeyike
  * @date 2020/7/15 - 19:31
@@ -28,5 +30,15 @@ public class StuServiceImpl implements StuService{
     @Override
     public Stu queryStuByID(int ID) {
         return stuMapper.queryStuByID(ID);
+    }
+
+    @Override
+    public List<Stu> queryStuList() {
+        return stuMapper.queryStuList();
+    }
+
+    @Override
+    public int addStu(Stu stu) {
+        return stuMapper.addStu(stu);
     }
 }

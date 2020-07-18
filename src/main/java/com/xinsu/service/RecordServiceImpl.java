@@ -5,6 +5,8 @@ import com.xinsu.pojo.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author yeyike
  * @date 2020/7/15 - 19:45
@@ -14,6 +16,11 @@ public class RecordServiceImpl implements RecordService{
 
     @Autowired
     RecordMapper recordMapper;
+
+    @Override
+    public List<Record> queryRecordByID(int ID) {
+        return recordMapper.queryRecordByID(ID);
+    }
 
     @Override
     public int deleteRecords(int ID) {
