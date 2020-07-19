@@ -7,6 +7,8 @@ import com.xinsu.pojo.Result;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -40,6 +42,15 @@ public class LoginFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With,X-App-Id, X-Token");
         response.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
         response.setHeader("Access-Control-Max-Age", "3600");
+
+        // 如果是OPTIONS则结束请求
+        if (HttpMethod.OPTIONS.toString().equals(request.getMethod())) {
+            response.setStatus(HttpStatus.NO_CONTENT.value());
+            String string = JSONObject.toJSONString(new Result("false"));
+            response.setContentType("json/text;charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.write(string);
+        }
 
         //获取Headers中的参数
         String token = request.getHeader("token");
