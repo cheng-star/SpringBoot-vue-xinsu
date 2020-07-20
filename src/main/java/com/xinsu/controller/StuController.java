@@ -20,6 +20,7 @@ import java.util.List;
  * @date 2020/7/15 - 19:52
  */
 @RestController
+@CrossOrigin
 public class StuController {
     @Autowired
     StuServiceImpl stuService;
@@ -36,7 +37,7 @@ public class StuController {
     }
 
     @RequestMapping("view/queryStuByID")
-    public Stu queryStuByID(int ID){
+    public Stu queryStuByID(Integer ID){
         Stu stu = stuService.queryStuByID(ID);
         return stu;
     }
@@ -106,7 +107,7 @@ public class StuController {
     }
 
     @RequestMapping("view/deleteStu")
-    public Result deleteStu(int ID){
+    public Result deleteStu(Integer ID){
         Stu stu = stuService.queryStuByID(ID);
         int result1 = stuService.deleteStu(ID);
         if (result1 > 0){
