@@ -6,7 +6,7 @@
 
     <select id="queryOperatersByName" resultType="Operaters" parameterType="String">
         select * from xinsu.operaters
-        where name = #{`name`}
+        where name = #{name}
     </select>
 
 </mapper>
