@@ -36,7 +36,7 @@ public class OperatersController {
 
     @GetMapping("/getUserOfLogin")
     public Result getUserOfLogin(HttpServletRequest request)throws UnsupportedEncodingException{
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization");
         token = token==null ? "" : token;
         Object user = redisTemplate.opsForValue().get(token);
         if (user != null){
