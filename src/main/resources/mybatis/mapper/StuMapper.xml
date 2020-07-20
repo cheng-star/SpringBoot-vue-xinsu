@@ -5,7 +5,7 @@
 <mapper namespace="com.xinsu.mapper.StuMapper">
     <insert id="addStu" parameterType="Stu">
         insert into xinsu.stu (ID,name,clazz,mail,balance)
-        value (#{ID}, #{`name`}, #{clazz},#{mail},#{balance});
+        value (#{ID}, #{name}, #{clazz},#{mail},#{balance});
     </insert>
 
     <update id="updateStu" parameterType="Stu">
