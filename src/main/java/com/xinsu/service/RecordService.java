@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface RecordService {
 
-    List<Record> queryRecordByID(int ID);
-    int deleteRecords(int ID);
+    List<Record> queryRecordByID(Integer ID);
+    int deleteRecords(Integer ID);
     int addRecord(Record record);
 }

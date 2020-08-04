@@ -2,6 +2,7 @@ package com.xinsu.mapper;
 
 import com.xinsu.pojo.Stu;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,9 +19,9 @@ public interface StuMapper {
 
     int addStu(Stu stu);
 
-    Stu queryStuByID(int ID);
+    Stu queryStuByID(Integer ID);
 
-    int updateStu(Stu stu);
+    int updateStu(@Param("ID") Integer ID, @Param("balance") Integer balance);
 
-    int deleteStu(int ID);
+    int deleteStu(Integer ID);
 }

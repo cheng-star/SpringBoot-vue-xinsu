@@ -18,17 +18,17 @@ public class StuServiceImpl implements StuService{
     StuMapper stuMapper;
 
     @Override
-    public int updateStu(Stu stu) {
-        return stuMapper.updateStu(stu);
+    public int updateStu(Integer ID,Integer balance) {
+        return stuMapper.updateStu(ID,balance);
     }
 
     @Override
-    public int deleteStu(int ID) {
+    public int deleteStu(Integer ID) {
         return stuMapper.deleteStu(ID);
     }
 
     @Override
-    public Stu queryStuByID(int ID) {
+    public Stu queryStuByID(Integer ID) {
         return stuMapper.queryStuByID(ID);
     }
 

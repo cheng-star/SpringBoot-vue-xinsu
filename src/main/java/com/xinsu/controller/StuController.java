@@ -6,6 +6,7 @@ import com.xinsu.pojo.Stu;
 import com.xinsu.service.RecordServiceImpl;
 import com.xinsu.service.StuService;
 import com.xinsu.service.StuServiceImpl;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -57,24 +58,17 @@ public class StuController {
     }
 
     @RequestMapping("view/consumption")
-    public Result consumption(Stu stu){
-        Stu stu1 = stuService.queryStuByID(stu.getID());
-        int price = stu1.getBalance() - stu.getBalance();
-        int result1 = stuService.updateStu(stu);
-        if (result1 > 0) {
-            Record record = new Record("消费了"+price+"元",stu.getID());
-            int result2 = recordService.addRecord(record);
-            if (result2 > 0){
-                mailMessage.setSubject("新素会员卡消费通知");
-                mailMessage.setText("今天您已消费"+price+"元");
-                mailMessage.setTo(stu.getMail());
-                mailMessage.setFrom("ad2248@foxmail.com");
-                mailSender.send(mailMessage);
-                return new Result("true");
-            }else {
-                return new Result("false");
-            }
-
+    public Result consumption(Integer ID, Integer balance,String mail,Integer consumption){
+        int result1 = stuService.updateStu(ID,balance);
+        Record record = new Record("消费了"+consumption+"元",ID);
+        int result2 = recordService.addRecord(record);
+        if (result1 > 0 && result2 > 0){
+            mailMessage.setSubject("新素会员卡消费通知");
+            mailMessage.setText("今天您已消费"+consumption+"元");
+            mailMessage.setTo(mail);
+            mailMessage.setFrom("ad2248@foxmail.com");
+            mailSender.send(mailMessage);
+            return new Result("true");
         }else {
             return new Result("false");
         }
@@ -82,24 +76,17 @@ public class StuController {
     }
 
     @RequestMapping("view/recharge")
-    public Result recharge(Stu stu){
-        Stu stu1 = stuService.queryStuByID(stu.getID());
-        int price = stu.getBalance() - stu1.getBalance();
-        int result1 = stuService.updateStu(stu);
-        if (result1 > 0) {
-            Record record = new Record("充值了"+String.valueOf(price)+"元",stu.getID());
-            int result2 = recordService.addRecord(record);
-            if (result2 > 0){
-                mailMessage.setSubject("新素会员卡消费通知");
-                mailMessage.setText("今天您已充值"+price+"元");
-                mailMessage.setTo(stu.getMail());
-                mailMessage.setFrom("ad2248@foxmail.com");
-                mailSender.send(mailMessage);
-                return new Result("true");
-            }else {
-                return new Result("false");
-            }
-
+    public Result recharge(Integer ID,Integer balance,String mail,Integer consumption){
+        int result1 = stuService.updateStu(ID,balance);
+        Record record = new Record("充值了"+consumption+"元",ID);
+        int result2 = recordService.addRecord(record);
+        if (result1 > 0 && result2 > 0){
+            mailMessage.setSubject("新素会员卡充值通知");
+            mailMessage.setText("今天您已充值"+consumption+"元");
+            mailMessage.setTo(mail);
+            mailMessage.setFrom("ad2248@foxmail.com");
+            mailSender.send(mailMessage);
+            return new Result("true");
         }else {
             return new Result("false");
         }
@@ -109,9 +96,9 @@ public class StuController {
     @RequestMapping("view/deleteStu")
     public Result deleteStu(Integer ID){
         Stu stu = stuService.queryStuByID(ID);
-        int result1 = stuService.deleteStu(ID);
-        if (result1 > 0){
-            int result2 = recordService.deleteRecords(ID);
+        int result1 = recordService.deleteRecords(ID);
+        if (result1 >= 0){
+            int result2 = stuService.deleteStu(ID);
             if (result2 > 0){
                 SimpleMailMessage mailMessage = new SimpleMailMessage();
 

@@ -18,12 +18,12 @@ public class RecordServiceImpl implements RecordService{
     RecordMapper recordMapper;
 
     @Override
-    public List<Record> queryRecordByID(int ID) {
+    public List<Record> queryRecordByID(Integer ID) {
         return recordMapper.queryRecordByID(ID);
     }
 
     @Override
-    public int deleteRecords(int ID) {
+    public int deleteRecords(Integer ID) {
         return recordMapper.deleteRecords(ID);
     }
 
