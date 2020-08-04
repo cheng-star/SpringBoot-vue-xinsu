@@ -5,7 +5,7 @@
 <mapper namespace="com.xinsu.mapper.RecordMapper">
     <insert id="addRecord" parameterType="Record">
         insert into xinsu.record (detail,timestamp,ID)
-        value (#{detail}, #{`timestamp`},#{ID});
+        value (#{detail}, #{timestamp},#{ID});
     </insert>
 
     <select id="queryRecordByID" resultType="Record">

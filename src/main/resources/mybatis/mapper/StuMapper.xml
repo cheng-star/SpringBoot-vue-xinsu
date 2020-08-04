@@ -8,7 +8,7 @@
         value (#{ID}, #{name}, #{clazz},#{mail},#{balance});
     </insert>
 
-    <update id="updateStu" parameterType="Stu">
+    <update id="updateStu" parameterType="int">
         update xinsu.stu set balance=#{balance}
         where ID=#{ID};
     </update>
@@ -24,7 +24,7 @@
 
     <delete id="deleteStu" parameterType="int">
         delete from xinsu.stu
-        where ID = #{ID}
+        where ID = #{ID};
     </delete>
 
 </mapper>
